@@ -8,9 +8,7 @@ import java.sql.SQLException;
 
 public class ConnectDB {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Connection conn = JDBC.getConnection(
-
-        );
+        Connection conn = JDBC.getConnection();
         System.out.println("Connecting success!!!");
     }
 }

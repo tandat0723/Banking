@@ -7,9 +7,9 @@ public class InterestRate {
     private Double amount;
     private KyHan period;
 
-    public InterestRate(Double laixuat, KyHan kyhan ) {
+    public InterestRate(Double laixuat, KyHan kyhan) {
         this.amount = laixuat;
-        this. period = kyhan;
+        this.period = kyhan;
     }
 
     public InterestRate() {
