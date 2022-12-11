@@ -64,4 +64,6 @@ public enum KyHan {
     public abstract Calendar TinhNgayDaoHan(Calendar d);
 
     public abstract double TinhLai(double tien);
+
+
 }

@@ -1,22 +1,21 @@
-package Bank_System.Model;
-
+package Bank_System;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public abstract class TaiKhoan {
+public class TaiKhoan {
     public static final SimpleDateFormat d = new SimpleDateFormat("dd/MM/yyyy");
     private static int demSoTaiKhoan = 0;
     private String soTaiKhoan;
     private String hoTen;
     private String gioiTinh;
-    private Date ngaySinh;
+    private GregorianCalendar ngaySinh;
     private String queQuan;
     private String soCCCD;
     private Double soTienGui;
     private Date ngayTaoTaiKhoan;
     private static final Scanner scanner = new Scanner(System.in);
-
 
     {
         ngayTaoTaiKhoan = new Date();
@@ -24,29 +23,26 @@ public abstract class TaiKhoan {
 
     }
 
-    public TaiKhoan() {
-    }
+    public TaiKhoan() {}
 
     public TaiKhoan(String ten, double tien) {
         this.hoTen = ten;
         this.soTienGui = tien;
     }
 
-    public TaiKhoan(String ten, String gioiTinh, String queQuan, Date ngaySinh, String cccd, double tien) {
+    public TaiKhoan(String ten, GregorianCalendar ngaySinh, String gioiTinh, String queQuan, String cccd, double tien) {
         this.hoTen = ten;
         this.setGioiTinh(gioiTinh);
-        this.ngaySinh = ngaySinh;
         this.queQuan = queQuan;
         this.soCCCD = cccd;
         this.soTienGui = tien;
+        this.ngaySinh = ngaySinh;
     }
 
     public void RutTienNganHang(double tien) {
-        if (this.isNgayDaoHan()) {
-            if (this.soTienGui >= tien) {
+        if (this.isNgayDaoHan())
+            if (this.soTienGui >= tien)
                 this.soTienGui -= tien;
-            }
-        }
     }
 
     public void GuiTienNganHang(double tien) {
@@ -58,10 +54,8 @@ public abstract class TaiKhoan {
                 this.soTienGui += tien;
                 System.out.println("Bạn vừa nạp " + soTienGui + " VNĐ vào tài khoản");
             }
-        } else {
+        } else
             System.out.println("Số tiền gửi không hợp lệ");
-        }
-
     }
 
     public boolean isNgayDaoHan() {
@@ -72,11 +66,43 @@ public abstract class TaiKhoan {
         return (this.soTienGui * 0.002) / 12;
     }
 
-
     @Override
     public String toString() {
         return String.format("\nSố tài khoản: %s\nHọ và tên khách hàng: %s\nSố CCCD: %s\nQuê quán: %s\nNgày sinh: %s\nGiới tính: %s\nSố tiền: %,10.0f VNĐ\nNgày tạo tài khoản: %s\n",
                 this.soTaiKhoan, this.hoTen, this.soCCCD, this.queQuan, d.format(this.ngaySinh), this.getGioiTinh(), this.soTienGui, d.format(this.ngayTaoTaiKhoan));
+    }
+
+    public void ChucNang() {
+        int choice;
+        do {
+            System.out.println("\nChức năng");
+            System.out.println("1. Tính tiền lãi.");
+            System.out.println("2. Gửi tiền.");
+            System.out.println("3. Rút tiền.");
+            System.out.println("0. Trở về.");
+            System.out.print("\nChọn chức năng: ");
+            do{
+                choice = scanner.nextInt();
+                if (choice < 0 || choice > 3)
+                    System.out.print("Yêu cầu không hợp lệ.\nChọn lại: ");
+            } while (choice < 0 || choice > 3);
+
+            switch (choice) {
+                case 1 -> {
+                    TinhTienLai();
+                }
+                case 2 -> {
+                    GuiTienNganHang(getSoTienGui());
+                }
+                case 3 -> {
+                    RutTienNganHang(getSoTienGui());
+                }
+                default -> {
+                    break;
+                }
+            }
+        } while (choice > 0);
+
     }
 
     public String getHoTen() {
@@ -87,11 +113,11 @@ public abstract class TaiKhoan {
         this.hoTen = hoTen;
     }
 
-    public Date getNgaySinh() {
+    public GregorianCalendar getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(GregorianCalendar ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBC {
-    private static Connection connect;
+    private Connection connect;
 
-    public static Connection getConnection() {
+    public JDBC() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String dbUrl = "jdbc:mysql://localhost:3306/bankdb?autoReconnect=true&useSSL=false";
@@ -18,6 +18,9 @@ public class JDBC {
             System.out.println("Connect failure!");
             ex.printStackTrace();
         }
+    }
+
+    public Connection getConnection() {
         return connect;
     }
 

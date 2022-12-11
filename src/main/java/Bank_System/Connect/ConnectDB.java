@@ -1,14 +1,15 @@
 package Bank_System.Connect;
 
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class ConnectDB {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Connection conn = JDBC.getConnection();
-        System.out.println("Connecting success!!!");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306",
+                "root",
+                "12345678"
+        );
     }
 }
