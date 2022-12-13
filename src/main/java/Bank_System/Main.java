@@ -40,7 +40,7 @@ public class Main {
                         System.out.println("\nBạn hãy đăng nhập trước");
                         break;
                     } else {
-                        QuanLyTaiKhoanKhongKyHan quanLyTaiKhoanNganHang = new QuanLyTaiKhoanKhongKyHan();
+                        QuanLyTaiKhoan quanLyTaiKhoanNganHang = new QuanLyTaiKhoan();
                         quanLyTaiKhoanNganHang.MenuQuanLyTaiKhoan();
                     }
                 }

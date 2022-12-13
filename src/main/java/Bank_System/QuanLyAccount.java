@@ -117,7 +117,7 @@ public class QuanLyAccount {
         ps.executeUpdate();
         ps.close();
         conn.close();
-        System.out.println("\nĐã cập nhật!!");
+        System.out.println("\nĐổi mật khẩu thành công!!");
     }
 
     public void DangNhap() throws SQLException {

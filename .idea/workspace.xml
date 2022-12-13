@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be6be3c2-3455-4a8f-a88c-46568b07c690" name="Changes" comment="create project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bank_System/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanCoKyHan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanKhongKyHan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Connect/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/Connect/ConnectDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Connect/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/Connect/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/KyHan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/KyHan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Model/Account.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Model/InterestRate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Model/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Model/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanNganHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanCoKyHan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanCoKyHan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanKhongKyHan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoanCoKyHan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoanCoKyHan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/TaiKhoanKhongKyHan.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bank_System/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bank_System/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +31,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoanKhongKyHan.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Bank_System/QuanLyTaiKhoan.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,18 +44,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/My Computer/Downloads/Banking",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/My Computer/Downloads/Banking&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\My Computer\Downloads\Banking\src\main\java\Bank_System\Connect" />
@@ -75,7 +66,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Bank_System.Main">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Bank_System.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Bank_System.Main" />
       <module name="Banking" />
@@ -130,9 +121,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Bank_System.Main" />
         <item itemvalue="Application.ConnectDB" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>

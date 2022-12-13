@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class QuanLyTaiKhoanKhongKyHan {
+public class QuanLyTaiKhoan {
     private List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -37,18 +37,20 @@ public class QuanLyTaiKhoanKhongKyHan {
         return scanner.nextDouble();
     }
 
-    private GregorianCalendar NgaySinh() {
+    private Date NgaySinh() {
         System.out.print("Nhập ngày sinh: ");
         int day = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("\nNhập tháng: ");
         int month = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("\nNhập năm: ");
         int year = scanner.nextInt();
-        GregorianCalendar d = new GregorianCalendar(day, month, year);
+        Date d = new Date(day, month, year);
         scanner.nextLine();
         return d;
+    }
+
+    public void Them(TaiKhoan taiKhoan){
+        this.dsTaiKhoan.add(taiKhoan);
     }
 
     public void ThemTaiKhoanKhongKyHan() throws SQLException {
@@ -58,22 +60,36 @@ public class QuanLyTaiKhoanKhongKyHan {
         String queQuan = NhapQueQuan();
         String gioiTinh = NhapGioiTinh();
         double tienGui = NhapSoTien();
-        GregorianCalendar ngaySinh = NgaySinh();
-        TaiKhoan taiKhoan = new TaiKhoan(ten, ngaySinh, gioiTinh, queQuan, cccd, tienGui);
+        TaiKhoan taiKhoan = new TaiKhoan(ten, gioiTinh, queQuan, cccd, tienGui);
         this.dsTaiKhoan.add(taiKhoan);
-        System.out.println("Có muốn lưu xuống database không?");
+        System.out.println("Có muốn lưu không?");
         System.out.print("Lựa chọn của bạn(Y/N): ");
         if (scanner.nextLine().equalsIgnoreCase("Y")) {
             SaveData(taiKhoan);
         }
     }
 
-    public void XoaTaiKhoan(TaiKhoan taiKhoan) {
-        this.dsTaiKhoan.remove(taiKhoan);
+    public void XoaTaiKhoan() throws SQLException {
+        System.out.print("Nhập ID tài khoản muốn xóa:");
+        int delete = scanner.nextInt();
+        scanner.nextLine();
+        JDBC con = new JDBC();
+        String sql = "DELETE FROM taikhoankhongkyhan WHERE (id = ?);";
+        PreparedStatement ps = con.getConnection().prepareStatement(sql);
+        ps.setInt(1,delete);
+        ps.execute();
+        System.out.println("Xóa thành công!!");
+
+        ps.execute("ALTER TABLE taikhoankhongkyhan DROP id;");
+        ps.execute("ALTER TABLE taikhoankhongkyhan AUTO_INCREMENT = 1;");
+        ps.execute("ALTER TABLE taikhoankhongkyhan ADD id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;");
+        System.out.println("Đã cập nhật lại ID!");
+        ps.close();
+        con.close();
     }
 
     public void HienThiTienLai() {
-        this.dsTaiKhoan.forEach(taiKhoan -> System.out.printf("\n-------------------\nSố tiền lãi\nTài khoản: %s\nTên chủ tài khoản: %s\nTiền lãi hiện có là: %,8.0f VNĐ", taiKhoan.getSoTaiKhoan(), taiKhoan.getHoTen(), taiKhoan.TinhTienLai()));
+        this.dsTaiKhoan.forEach(taiKhoan -> System.out.printf("\n-------------------\nSỐ TIỀN LÃI\n\nTài khoản: %s\nTên chủ tài khoản: %s\nTiền lãi hiện có là: %,8.0f VNĐ\n", taiKhoan.getSoTaiKhoan(), taiKhoan.getHoTen(), taiKhoan.TinhTienLai()));
     }
 
     public void HienThiData() throws SQLException {
@@ -93,18 +109,17 @@ public class QuanLyTaiKhoanKhongKyHan {
         System.out.printf("%20s", "TIỀN GỬI");
         while (result.next()) {
             System.out.printf("\n%5d", result.getInt("id"));
-            System.out.printf("%20s", result.getLong("name"));
-            System.out.printf("%20s", result.getLong("sex"));
-            System.out.printf("%20s", result.getLong("day_of_birth"));
-            System.out.printf("%20s", result.getLong("home_town"));
-            System.out.printf("%20s", result.getLong("identifier_number"));
-            System.out.printf("%20s", result.getLong("account_number"));
-            System.out.printf("%20s", result.getLong("account_creation_date"));
-            System.out.printf("%20s", result.getLong("price"));
+            System.out.printf("%20s", result.getString("name"));
+            System.out.printf("%20s", result.getString("sex"));
+            System.out.printf("%20s", result.getDate("day_of_birth"));
+            System.out.printf("%20s", result.getString("home_town"));
+            System.out.printf("%20s", result.getString("identifier_number"));
+            System.out.printf("%20s", result.getString("account_number"));
+            System.out.printf("%20s", result.getDate("account_creation_date"));
+            System.out.printf("%20s", result.getDouble("price"));
         }
         result.close();
         ps.close();
-        ;
         connect.close();
     }
 
@@ -148,13 +163,9 @@ public class QuanLyTaiKhoanKhongKyHan {
         }
     }
 
-    public void ChonChucNang() {
-        ChonChucNang();
-    }
-
     public void MenuQuanLyTaiKhoan() throws SQLException {
         int choice;
-        QuanLyTaiKhoanKhongKyHan quanLyTaiKhoanKhongKyHan = new QuanLyTaiKhoanKhongKyHan();
+        QuanLyTaiKhoan quanLyTaiKhoanKhongKyHan = new QuanLyTaiKhoan();
         do {
             System.out.println("\n------------- QUẢN LÝ TÀI KHOẢN NGÂN HÀNG KHÔNG KỲ HẠN --------------");
             System.out.println("1. Mở tài khoản.");
@@ -173,8 +184,11 @@ public class QuanLyTaiKhoanKhongKyHan {
             scanner.nextLine();
             switch (choice) {
                 case 1 -> ThemTaiKhoanKhongKyHan();
-                case 2 -> {}
-                case 3 -> ChonChucNang();
+                case 2 -> XoaTaiKhoan();
+                case 3 -> {
+                    TaiKhoan taiKhoan = new TaiKhoan();
+                    taiKhoan.ChucNang();
+                }
                 case 4 -> {
                     System.out.print("Tra cứu thông tin tài khoản không kỳ hạn hiện tại hay Database?\n1. List hiện tại\n2. Trong database\nLựa chọn của bạn: ");
                     if (scanner.nextInt() == 1) {
@@ -192,13 +206,7 @@ public class QuanLyTaiKhoanKhongKyHan {
                     HienThiData();
                 }
                 default -> {
-                    System.out.print("\nBạn có chắc muốn trở lại?" + "\nLựa chọn của bạn là (Y/N):");
-                    String tl = scanner.nextLine();
-                    if (tl.toUpperCase().contains("N"))
-                        choice = 4;
-                    else {
-                        System.out.println("\n<-- Trở về\n");
-                    }
+                    break;
                 }
             }
         } while (choice > 0);

@@ -1,7 +1,6 @@
 package Bank_System;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class TaiKhoan {
@@ -10,7 +9,7 @@ public class TaiKhoan {
     private String soTaiKhoan;
     private String hoTen;
     private String gioiTinh;
-    private GregorianCalendar ngaySinh;
+    private Date ngaySinh;
     private String queQuan;
     private String soCCCD;
     private Double soTienGui;
@@ -30,13 +29,12 @@ public class TaiKhoan {
         this.soTienGui = tien;
     }
 
-    public TaiKhoan(String ten, GregorianCalendar ngaySinh, String gioiTinh, String queQuan, String cccd, double tien) {
+    public TaiKhoan(String ten, String gioiTinh, String queQuan, String cccd, double tien) {
         this.hoTen = ten;
         this.setGioiTinh(gioiTinh);
         this.queQuan = queQuan;
         this.soCCCD = cccd;
         this.soTienGui = tien;
-        this.ngaySinh = ngaySinh;
     }
 
     public void RutTienNganHang(double tien) {
@@ -68,8 +66,8 @@ public class TaiKhoan {
 
     @Override
     public String toString() {
-        return String.format("\nSố tài khoản: %s\nHọ và tên khách hàng: %s\nSố CCCD: %s\nQuê quán: %s\nNgày sinh: %s\nGiới tính: %s\nSố tiền: %,10.0f VNĐ\nNgày tạo tài khoản: %s\n",
-                this.soTaiKhoan, this.hoTen, this.soCCCD, this.queQuan, d.format(this.ngaySinh), this.getGioiTinh(), this.soTienGui, d.format(this.ngayTaoTaiKhoan));
+        return String.format("\nSố tài khoản: %s\nHọ và tên khách hàng: %s\nSố CCCD: %s\nQuê quán: %s\nGiới tính: %s\nSố tiền: %,10.0f VNĐ\nNgày tạo tài khoản: %s\n",
+                this.soTaiKhoan, this.hoTen, this.soCCCD, this.queQuan, this.getGioiTinh(), this.soTienGui, d.format(this.ngayTaoTaiKhoan));
     }
 
     public void ChucNang() {
@@ -113,11 +111,11 @@ public class TaiKhoan {
         this.hoTen = hoTen;
     }
 
-    public GregorianCalendar getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(GregorianCalendar ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
